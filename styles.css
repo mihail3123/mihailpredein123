@@ -1,3 +1,4 @@
-body {
+.section-features {
   background-image: url('11.webp');
+  background-repeat: repeat;
 }
