@@ -8,3 +8,11 @@
   border-radius: 90px;
   margin-bottom: 150px;
 }
+.blinking-img {
+  animation: blink-fast 0.5s infinite; /* 0.5 сек = очень быстро */
+}
+
+@keyframes blink-fast {
+  0%, 100% { opacity: 1; } /* видно */
+  50% { opacity: 0; }      /* невидимо */
+}
