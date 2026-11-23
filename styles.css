@@ -3,10 +3,10 @@
   background-repeat: repeat;
 }
 .my-block {
-  background-color: #f9f9f9;
-  padding: 200px;
-  border-radius: 90px;
-  margin-bottom: 150px;
+  background-color: #573837;
+  padding: 500px;
+  border-radius: 500px;
+  margin-bottom: 500px;
 }
 .blinking-img {
   animation: blink-fast 0.5s infinite; /* 0.5 сек = очень быстро */
