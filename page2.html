@@ -6,3 +6,32 @@ height="1000" />
 <span style="font-size: 100px; margin: 100px 0;"
   >мой сайт 2</span
 >
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мигающий текст</title>
+  <style>
+    .blink {
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Доступность: отключаем анимацию, если пользователь просит уменьшить движение */
+    @media (prefers-reduced-motion: reduce) {
+      .blink {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p>Внимание: <span class="blink">срочно!</span></p>
+</body>
+</html>
