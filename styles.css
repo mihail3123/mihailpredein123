@@ -16,3 +16,13 @@
   0%, 100% { opacity: 1; } /* видно */
   50% { opacity: 0; }      /* невидимо */
 }
+.scroller {
+  display: flex;              /* элементы в ряд */
+  overflow-x: auto;           /* полоса прокрутки внизу */
+  scroll-snap-type: x mandatory; /* опционально: плавные «щелчки» к элементам */
+}
+
+.item {
+  flex: 0 0 300px;            /* ширина элемента, не сжимается */
+  scroll-snap-align: start;
+}
