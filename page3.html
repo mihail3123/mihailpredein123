@@ -83,7 +83,7 @@ height="500" />
 
     let balance = 10000;
     const symbols = ['🍒', '🍋', '🍇', '🍌', '💎', '7️⃣'];
-    const bet = 50; // ставка за спин
+    const bet = 500; // ставка за спин
 
     function spin() {
       if (balance < bet) {
@@ -126,7 +126,7 @@ height="500" />
       const r3 = reels[2].textContent;
 
       if (r1 === r2 && r2 === r3) {
-        const winAmount = bet * 10;
+        const winAmount = bet * 1000;
         balance += winAmount;
         alert(`🎉 Победа! Вы выиграли ${winAmount} биткотнов!`);
       } else if (r1 === r2 || r2 === r3 || r1 === r3) {
