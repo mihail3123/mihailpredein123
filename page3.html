@@ -4,3 +4,144 @@ height="500" />
 <span style="font-size: 100px; margin: 100px 0;"
   >   казино</span
 >
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Слот-машина (демо)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a2e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 { margin-bottom: 10px; }
+    .balance-box {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    .slot-machine {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .reel {
+      width: 80px;
+      height: 120px;
+      background: #4a4a6a;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1rem;
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #c73a52; }
+    button:disabled { background: #555; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+  <h1>🎰 Слот-машина</h1>
+  <div class="balance-box">Баланс: <span id="balance">100</span> монет</div>
+
+  <div class="slot-machine">
+    <div class="reel" id="reel1">🍒</div>
+    <div class="reel" id="reel2">🍋</div>
+    <div class="reel" id="reel3">🍇</div>
+  </div>
+
+  <button id="spinBtn">Крутить!</button>
+
+  <script>
+    const balanceEl = document.getElementById('balance');
+    const spinBtn = document.getElementById('spinBtn');
+    const reels = [
+      document.getElementById('reel1'),
+      document.getElementById('reel2'),
+      document.getElementById('reel3')
+    ];
+
+    let balance = 100;
+    const symbols = ['🍒', '🍋', '🍇', '🍌', '💎', '7️⃣'];
+    const bet = 10; // ставка за спин
+
+    function spin() {
+      if (balance < bet) {
+        alert('Недостаточно монет!');
+        return;
+      }
+
+      balance -= bet;
+      updateBalance();
+
+      // Блокируем кнопку на время анимации
+      spinBtn.disabled = true;
+
+      // Запускаем вращение
+      reels.forEach((reel, index) => {
+        const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Простая анимация: меняем символ несколько раз быстро
+        let count = 0;
+        const interval = setInterval(() => {
+          const tempSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+          reel.textContent = tempSymbol;
+          count++;
+          if (count >= 15 - index * 3) { // разное время для каждого барабана
+            clearInterval(interval);
+            reel.textContent = randomSymbol;
+            checkWin();
+          }
+        }, 100);
+      });
+
+      setTimeout(() => {
+        spinBtn.disabled = false;
+      }, 2000); // разблокируем через 2 секунды
+    }
+
+    function checkWin() {
+      const r1 = reels[0].textContent;
+      const r2 = reels[1].textContent;
+      const r3 = reels[2].textContent;
+
+      if (r1 === r2 && r2 === r3) {
+        const winAmount = bet * 10;
+        balance += winAmount;
+        alert(`🎉 Победа! Вы выиграли ${winAmount} монет!`);
+      } else if (r1 === r2 || r2 === r3 || r1 === r3) {
+        const winAmount = bet;
+        balance += winAmount;
+        // Можно не показывать алерт для мелких совпадений
+      }
+      updateBalance();
+    }
+
+    function updateBalance() {
+      balanceEl.textContent = balance;
+    }
+
+    spinBtn.addEventListener('click', spin);
+  </script>
+</body>
+</html>
