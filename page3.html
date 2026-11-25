@@ -62,7 +62,7 @@ height="500" />
 <body>
 
   <h1>🎰 Слот-машина</h1>
-  <div class="balance-box">Баланс: <span id="balance">100</span> монет</div>
+  <div class="balance-box">Баланс: <span id="balance">100</span> биткоинов</div>
 
   <div class="slot-machine">
     <div class="reel" id="reel1">🍒</div>
@@ -81,7 +81,7 @@ height="500" />
       document.getElementById('reel3')
     ];
 
-    let balance = 100;
+    let balance = 1000;
     const symbols = ['🍒', '🍋', '🍇', '🍌', '💎', '7️⃣'];
     const bet = 50; // ставка за спин
 
@@ -128,7 +128,7 @@ height="500" />
       if (r1 === r2 && r2 === r3) {
         const winAmount = bet * 10;
         balance += winAmount;
-        alert(`🎉 Победа! Вы выиграли ${winAmount} монет!`);
+        alert(`🎉 Победа! Вы выиграли ${winAmount} биткотнов!`);
       } else if (r1 === r2 || r2 === r3 || r1 === r3) {
         const winAmount = bet;
         balance += winAmount;
